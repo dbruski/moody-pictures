@@ -1,10 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { ThemeProvider } from 'styled-components';
+import styled, { ThemeProvider } from 'styled-components';
 import GlobalStyle from '../theme/GlobalStyle';
 import { theme } from '../theme/theme';
 import Navbar from '../components/organisms/Navbar/Navbar';
-import Input from '../components/atoms/Input/Input';
+
+const StyledWrapper = styled.main`
+  margin-top: 10vh;
+`;
 
 const MainTemplate = ({ children }) => {
   return (
@@ -12,7 +15,7 @@ const MainTemplate = ({ children }) => {
       <GlobalStyle />
       <ThemeProvider theme={theme}>
         <Navbar />
-        {children}
+        <StyledWrapper>{children}</StyledWrapper>
       </ThemeProvider>
     </>
   );

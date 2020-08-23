@@ -3,6 +3,7 @@ import reducer from '../reducer';
 import {
   addPhoto as addPhotoAction,
   removePhoto as removePhotoAction,
+  fetchData as fetchDataAction,
 } from '../actions';
 
 const initialState = {
@@ -48,8 +49,12 @@ export const Provider = ({ children }) => {
     dispatch(removePhotoAction(id));
   };
 
+  const fetchData = (fetched) => {
+    dispatch(fetchDataAction(fetched));
+  };
+
   return (
-    <AppContext.Provider value={{ state, addPhoto, removePhoto }}>
+    <AppContext.Provider value={{ state, addPhoto, removePhoto, fetchData }}>
       {children}
     </AppContext.Provider>
   );

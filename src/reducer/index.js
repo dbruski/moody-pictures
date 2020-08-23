@@ -12,6 +12,11 @@ const reducer = (state, { type, payload }) => {
           ...state.favorites.filter((photo) => photo.id !== payload.id),
         ],
       };
+    case 'FETCH_DATA':
+      return {
+        ...state,
+        fetched: [...payload.fetched],
+      };
 
     default:
       return state;

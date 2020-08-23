@@ -11,3 +11,10 @@ export const removePhoto = (id) => {
     payload: { id },
   };
 };
+
+export const fetchData = (fetched) => {
+  return {
+    type: 'FETCH_DATA',
+    payload: { fetched },
+  };
+};

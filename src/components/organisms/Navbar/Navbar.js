@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import styled from 'styled-components';
 import Input from '../../atoms/Input/Input';
 import { NavLink } from 'react-router-dom';
@@ -7,6 +7,8 @@ import { AppContext } from '../../../context';
 import SearchIcon from '@material-ui/icons/Search';
 import HomeIcon from '@material-ui/icons/Home';
 import FavoriteIcon from '@material-ui/icons/Favorite';
+import { API_KEY } from '../../../API';
+import axios from 'axios';
 
 const StyledWrapper = styled.nav`
   position: fixed;
@@ -58,8 +60,30 @@ const StyledSearchContainer = styled.form`
 `;
 
 const Navbar = () => {
-  const { state } = useContext(AppContext);
+  const { state, fetchData } = useContext(AppContext);
   const { favorites } = state;
+  const [inputValue, setInputValue] = useState('');
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    axios
+      .get(
+        `https://api.unsplash.com/photos/random/?client_id=${API_KEY}&count=9&query=${inputValue}`,
+      )
+      .then((response) => {
+        console.log(response);
+        const data = response.data.map((result) => {
+          return {
+            id: result.id,
+            url: result?.urls.regular,
+            username: result.user.username,
+          };
+        });
+        fetchData(data);
+      })
+      .catch((err) => console.log(err));
+  };
 
   return (
     <StyledWrapper>
@@ -67,8 +91,11 @@ const Navbar = () => {
         <HomeIcon style={{ fontSize: '72px' }} />
       </StyledNavButton>
       <StyledSearchContainer>
-        <Input />
-        <button type="submit">
+        <Input
+          onChange={(e) => setInputValue(e.target.value)}
+          value={inputValue}
+        />
+        <button type="submit" onClick={handleSubmit}>
           <SearchIcon />
         </button>
       </StyledSearchContainer>

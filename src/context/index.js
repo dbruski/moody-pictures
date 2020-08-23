@@ -1,5 +1,9 @@
 import React, { createContext, useReducer } from 'react';
 import reducer from '../reducer';
+import {
+  addPhoto as addPhotoAction,
+  removePhoto as removePhotoAction,
+} from '../actions';
 
 const initialState = {
   favorites: [],
@@ -36,8 +40,16 @@ export const AppContext = createContext();
 export const Provider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
 
+  const addPhoto = (photo) => {
+    dispatch(addPhotoAction(photo));
+  };
+
+  const removePhoto = (id) => {
+    dispatch(removePhotoAction(id));
+  };
+
   return (
-    <AppContext.Provider value={{ state, dispatch }}>
+    <AppContext.Provider value={{ state, addPhoto, removePhoto }}>
       {children}
     </AppContext.Provider>
   );

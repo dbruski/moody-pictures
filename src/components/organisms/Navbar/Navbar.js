@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import styled, { css } from 'styled-components';
 import Input from '../../atoms/Input/Input';
 import { NavLink, Link } from 'react-router-dom';
 import { routes } from '../../../routes';
+import { AppContext } from '../../../context';
 import SearchIcon from '@material-ui/icons/Search';
 import HomeIcon from '@material-ui/icons/Home';
 import FavoriteIcon from '@material-ui/icons/Favorite';
@@ -57,6 +58,9 @@ const StyledSearchContainer = styled.form`
 `;
 
 const Navbar = () => {
+  const { state } = useContext(AppContext);
+  const { favorites } = state;
+
   return (
     <StyledWrapper>
       <StyledNavButton as={NavLink} exact to={routes.home} activeclass="active">
@@ -69,7 +73,9 @@ const Navbar = () => {
         </button>
       </StyledSearchContainer>
       <StyledNavButton as={NavLink} to={routes.favorites} activeclass="active">
-        <StyledFavoritesLabel>99+</StyledFavoritesLabel>
+        {favorites.length !== 0 && (
+          <StyledFavoritesLabel>{favorites.length}</StyledFavoritesLabel>
+        )}
         <FavoriteIcon style={{ fontSize: '72px' }} />
       </StyledNavButton>
     </StyledWrapper>

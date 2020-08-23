@@ -1,5 +1,4 @@
 import React, { useContext } from 'react';
-import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import MainTemplate from '../templates/MainTemplate';
 import Photo from '../components/organisms/Photo/Photo';
@@ -11,7 +10,7 @@ const StyledFlex = styled.div`
   grid-gap: 5px;
 `;
 
-function Home(props) {
+function Home() {
   const { state } = useContext(AppContext);
 
   return (
@@ -26,7 +25,5 @@ function Home(props) {
     </MainTemplate>
   );
 }
-
-Home.propTypes = {};
 
 export default Home;

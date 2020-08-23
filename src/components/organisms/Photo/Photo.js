@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import PhotoInfo from './PhotoInfo';
 
@@ -16,7 +16,7 @@ const StyledImage = styled.img`
 `;
 
 function Photo({ details }) {
-  const { id, url, username } = details;
+  const { url } = details;
   const [isHovered, setIsHovered] = useState(false);
 
   return (
@@ -30,6 +30,12 @@ function Photo({ details }) {
   );
 }
 
-// Photo.propTypes = {};
+Photo.propTypes = {
+  details: PropTypes.shape({
+    id: PropTypes.string.isRequired,
+    url: PropTypes.string.isRequired,
+    username: PropTypes.string,
+  }),
+};
 
 export default Photo;

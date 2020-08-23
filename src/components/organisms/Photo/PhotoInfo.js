@@ -1,5 +1,5 @@
 import React, { useState, useContext, useEffect } from 'react';
-// import PropTypes from 'prop-types'
+import PropTypes from 'prop-types';
 import { AppContext } from '../../../context';
 import styled from 'styled-components';
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
@@ -25,7 +25,7 @@ const StyledWrapper = styled.div`
   }
 `;
 
-function PhotoInfo({ details, addPhotoFc }) {
+function PhotoInfo({ details }) {
   const { state, addPhoto, removePhoto } = useContext(AppContext);
   const [isFavorite, setIsFavorite] = useState(false);
 
@@ -54,6 +54,12 @@ function PhotoInfo({ details, addPhotoFc }) {
   );
 }
 
-// PhotoInfo.propTypes = {}
+PhotoInfo.propTypes = {
+  details: PropTypes.shape({
+    id: PropTypes.string.isRequired,
+    url: PropTypes.string.isRequired,
+    username: PropTypes.string,
+  }),
+};
 
 export default PhotoInfo;

@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 import Input from '../../atoms/Input/Input';
-import { NavLink, Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import { routes } from '../../../routes';
 import { AppContext } from '../../../context';
 import SearchIcon from '@material-ui/icons/Search';

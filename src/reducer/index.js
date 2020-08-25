@@ -17,6 +17,11 @@ const reducer = (state, { type, payload }) => {
         ...state,
         fetched: [...payload.fetched],
       };
+    case 'SET_LOADING':
+      return {
+        ...state,
+        isLoading: payload.loading,
+      };
 
     default:
       return state;

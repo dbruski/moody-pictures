@@ -64,12 +64,13 @@ const StyledSearchContainer = styled.form`
 `;
 
 const Navbar = () => {
-  const { state, fetchData } = useContext(AppContext);
+  const { state, fetchData, setLoading } = useContext(AppContext);
   const { favorites } = state;
   const [inputValue, setInputValue] = useState('');
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    setLoading(true);
 
     axios
       .get(
@@ -85,6 +86,7 @@ const Navbar = () => {
           };
         });
         fetchData(data);
+        setLoading(false);
       })
       .catch((err) => console.log(err));
   };

@@ -7,6 +7,9 @@ import Navbar from '../components/organisms/Navbar/Navbar';
 
 const StyledWrapper = styled.main`
   margin-top: 10vh;
+  min-height: 90vh;
+  background: ${({ theme }) => theme.primary};
+  overflow: hidden;
 `;
 
 const MainTemplate = ({ children }) => {

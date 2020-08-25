@@ -4,10 +4,14 @@ import MainTemplate from '../templates/MainTemplate';
 import Photo from '../components/organisms/Photo/Photo';
 import { AppContext } from '../context';
 
-const StyledFlex = styled.div`
+const StyledGrid = styled.main`
+  height: 90vh;
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
   grid-gap: 5px;
+  overflow: hidden;
+  grid-template-areas: 'a a b b' 'a a d c' 'f e e c';
 `;
 
 function Home() {
@@ -15,13 +19,11 @@ function Home() {
 
   return (
     <MainTemplate>
-      <>
-        <StyledFlex>
-          {state.fetched.map((group, idx) => (
-            <Photo key={group.id} details={group} />
-          ))}
-        </StyledFlex>
-      </>
+      <StyledGrid>
+        {state.fetched.map((group) => (
+          <Photo key={group.id} details={group} />
+        ))}
+      </StyledGrid>
     </MainTemplate>
   );
 }

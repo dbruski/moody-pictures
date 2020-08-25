@@ -39,12 +39,12 @@ function PhotoInfo({ details }) {
     <StyledWrapper>
       {isFavorite ? (
         <FavoriteIcon
-          style={{ color: 'red', fontSize: '72px', cursor: 'pointer' }}
+          style={{ color: 'red', fontSize: '108px', cursor: 'pointer' }}
           onClick={() => removePhoto(details.id)}
         />
       ) : (
         <FavoriteBorderIcon
-          style={{ fontSize: '72px', cursor: 'pointer' }}
+          style={{ fontSize: '108px', cursor: 'pointer' }}
           onClick={() => addPhoto(details)}
         />
       )}

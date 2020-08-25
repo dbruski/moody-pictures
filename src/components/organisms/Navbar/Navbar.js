@@ -16,10 +16,12 @@ const StyledWrapper = styled.nav`
   left: 0;
   width: 100vw;
   height: 10vh;
-  background: limegreen;
+  background: ${({ theme }) => theme.primary};
   display: flex;
   justify-content: space-between;
   align-items: center;
+  z-index: 9999;
+  box-shadow: 0px 2px 22px 1px #000;
 `;
 
 const StyledNavButton = styled.div`
@@ -30,16 +32,17 @@ const StyledNavButton = styled.div`
   justify-content: center;
   align-items: center;
   padding: 10px;
-  color: white;
+  color: ${({ theme }) => theme.tertiary};
+  transition: 0.3s ease;
 
   &.active {
-    color: blue;
+    color: ${({ theme }) => theme.cztery};
   }
 `;
 
 const StyledFavoritesLabel = styled.div`
   position: absolute;
-  background: red;
+  background: #f00;
   width: 25px;
   height: 25px;
   display: flex;
@@ -51,6 +54,7 @@ const StyledFavoritesLabel = styled.div`
   padding: 5px;
   font-size: ${({ theme }) => theme.fontSize.xs};
   font-weight: ${({ theme }) => theme.bold};
+  color: #fff;
 `;
 
 const StyledSearchContainer = styled.form`
@@ -69,7 +73,7 @@ const Navbar = () => {
 
     axios
       .get(
-        `https://api.unsplash.com/photos/random/?client_id=${API_KEY}&count=9&query=${inputValue}`,
+        `https://api.unsplash.com/photos/random/?client_id=${API_KEY}&count=6&query=${inputValue}`,
       )
       .then((response) => {
         console.log(response);
@@ -96,7 +100,7 @@ const Navbar = () => {
           value={inputValue}
         />
         <button type="submit" onClick={handleSubmit}>
-          <SearchIcon />
+          <SearchIcon style={{ fontSize: '42px', color: '#b9b9b9' }} />
         </button>
       </StyledSearchContainer>
       <StyledNavButton as={NavLink} to={routes.favorites} activeclass="active">

@@ -1,18 +1,34 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import PhotoInfo from './PhotoInfo';
 
 const StyledWrapper = styled.div`
-  height: 100%;
-  width: 100%;
   position: relative;
-  border: 1px solid red;
-`;
+  min-height: 230px;
+  background: center center no-repeat;
+  background-image: url(${({ url }) => url});
+  background-size: cover;
+  flex: 1;
 
-const StyledImage = styled.img`
-  width: 100%;
-  height: 100%;
+  &:nth-child(1) {
+    grid-area: a;
+  }
+  &:nth-child(2) {
+    grid-area: b;
+  }
+  &:nth-child(3) {
+    grid-area: c;
+  }
+  &:nth-child(4) {
+    grid-area: d;
+  }
+  &:nth-child(5) {
+    grid-area: e;
+  }
+  &:nth-child(6) {
+    grid-area: f;
+  }
 `;
 
 function Photo({ details }) {
@@ -23,8 +39,8 @@ function Photo({ details }) {
     <StyledWrapper
       onMouseOver={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
+      url={url}
     >
-      <StyledImage src={url} />
       {isHovered && <PhotoInfo details={details} />}
     </StyledWrapper>
   );

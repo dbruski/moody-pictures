@@ -5,6 +5,7 @@ import {
   removePhoto as removePhotoAction,
   fetchData as fetchDataAction,
   setLoading as setLoadingAction,
+  setFullScreen as setFullScreenAction,
 } from '../actions';
 
 const initialState =
@@ -13,6 +14,7 @@ const initialState =
         isLoading: false,
         favorites: [],
         fetched: [],
+        fullScreen: null,
       }
     : JSON.parse(localStorage.getItem('moody-pictures-state'));
 
@@ -44,9 +46,20 @@ export const Provider = ({ children }) => {
     dispatch(setLoadingAction(loading));
   };
 
+  const setFullScreen = (url) => {
+    dispatch(setFullScreenAction(url));
+  };
+
   return (
     <AppContext.Provider
-      value={{ state, addPhoto, removePhoto, fetchData, setLoading }}
+      value={{
+        state,
+        addPhoto,
+        removePhoto,
+        fetchData,
+        setLoading,
+        setFullScreen,
+      }}
     >
       {children}
     </AppContext.Provider>

@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import { routes } from '../routes';
 import MainTemplate from '../templates/MainTemplate';
 import Photo from '../components/organisms/Photo/Photo';
-
+import FullScreen from '../components/molecules/FullScreen/FullScreen';
 const StyledGrid = styled.div`
   display: grid;
 
@@ -23,7 +23,7 @@ const StyledInfo = styled.p`
 
 const Favorites = () => {
   const { state } = useContext(AppContext);
-  const { favorites } = state;
+  const { favorites, fullScreen } = state;
 
   return (
     <MainTemplate>
@@ -43,6 +43,7 @@ const Favorites = () => {
           .
         </StyledInfo>
       )}
+      {fullScreen && <FullScreen url={fullScreen} />}
     </MainTemplate>
   );
 };

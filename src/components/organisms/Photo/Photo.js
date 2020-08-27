@@ -6,6 +6,7 @@ import PhotoInfo from './PhotoInfo';
 const StyledWrapper = styled.div`
   position: relative;
   min-height: 230px;
+  min-width: 230px;
   background: center center no-repeat;
   background-image: url(${({ url }) => url});
   background-size: cover;

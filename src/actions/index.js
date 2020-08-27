@@ -25,3 +25,10 @@ export const setLoading = (loading) => {
     payload: { loading },
   };
 };
+
+export const setFullScreen = (url) => {
+  return {
+    type: 'SET_FULL_SCREEN',
+    payload: { url },
+  };
+};

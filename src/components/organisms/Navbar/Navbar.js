@@ -20,7 +20,7 @@ const StyledWrapper = styled.nav`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  z-index: 9999;
+  z-index: 999;
   box-shadow: 0px 2px 22px 1px #000;
 
   @media (min-width: 1024px) {

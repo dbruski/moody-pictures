@@ -4,6 +4,7 @@ import { AppContext } from '../../../context';
 import styled from 'styled-components';
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 import FavoriteIcon from '@material-ui/icons/Favorite';
+import FullscreenIcon from '@material-ui/icons/Fullscreen';
 
 const StyledWrapper = styled.div`
   position: absolute;
@@ -26,7 +27,9 @@ const StyledWrapper = styled.div`
 `;
 
 function PhotoInfo({ details }) {
-  const { state, addPhoto, removePhoto } = useContext(AppContext);
+  const { state, addPhoto, removePhoto, setFullScreen } = useContext(
+    AppContext,
+  );
   const [isFavorite, setIsFavorite] = useState(false);
 
   useEffect(() => {
@@ -39,10 +42,22 @@ function PhotoInfo({ details }) {
   return (
     <StyledWrapper>
       {isFavorite ? (
-        <FavoriteIcon
-          style={{ color: 'red', fontSize: '108px', cursor: 'pointer' }}
-          onClick={() => removePhoto(details.id)}
-        />
+        <>
+          <FavoriteIcon
+            style={{ color: 'red', fontSize: '108px', cursor: 'pointer' }}
+            onClick={() => removePhoto(details.id)}
+          />
+          <FullscreenIcon
+            style={{
+              fontSize: '36px',
+              position: 'absolute',
+              right: '5%',
+              bottom: '5%',
+              cursor: 'pointer',
+            }}
+            onClick={() => setFullScreen(details.url)}
+          />
+        </>
       ) : (
         <FavoriteBorderIcon
           style={{ fontSize: '108px', cursor: 'pointer' }}

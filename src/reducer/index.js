@@ -22,6 +22,11 @@ const reducer = (state, { type, payload }) => {
         ...state,
         isLoading: payload.loading,
       };
+    case 'SET_FULL_SCREEN':
+      return {
+        ...state,
+        fullScreen: payload.url,
+      };
 
     default:
       return state;

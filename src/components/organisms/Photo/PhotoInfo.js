@@ -33,6 +33,7 @@ function PhotoInfo({ details }) {
     setIsFavorite(
       Boolean(state.favorites.find((favorite) => favorite.id === details.id)),
     );
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [state]);
 
   return (

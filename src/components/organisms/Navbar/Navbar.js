@@ -12,7 +12,7 @@ import axios from 'axios';
 
 const StyledWrapper = styled.nav`
   position: fixed;
-  top: 0;
+  bottom: 0;
   left: 0;
   width: 100vw;
   height: 10vh;
@@ -22,6 +22,11 @@ const StyledWrapper = styled.nav`
   align-items: center;
   z-index: 9999;
   box-shadow: 0px 2px 22px 1px #000;
+
+  @media (min-width: 1024px) {
+    box-shadow: 0px 2px 22px 1px #000;
+    top: 0;
+  }
 `;
 
 const StyledNavButton = styled.div`
@@ -36,7 +41,7 @@ const StyledNavButton = styled.div`
   transition: 0.3s ease;
 
   &.active {
-    color: ${({ theme }) => theme.cztery};
+    color: ${({ theme }) => theme.quaternary};
   }
 `;
 
@@ -84,7 +89,8 @@ const Navbar = () => {
         hour < 14 ? 'Morning' : hour > 19 ? 'Night' : 'Afternoon';
       getPhotos(`${weather} ${timeOfDay}`);
     };
-    firstSearch();
+    // firstSearch();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const handleSubmit = (e) => {

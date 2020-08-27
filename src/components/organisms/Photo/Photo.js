@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 import PhotoInfo from './PhotoInfo';
 
 const StyledWrapper = styled.div`
@@ -10,24 +10,25 @@ const StyledWrapper = styled.div`
   background-image: url(${({ url }) => url});
   background-size: cover;
   flex: 1;
-
-  &:nth-child(1) {
-    grid-area: a;
-  }
-  &:nth-child(2) {
-    grid-area: b;
-  }
-  &:nth-child(3) {
-    grid-area: c;
-  }
-  &:nth-child(4) {
-    grid-area: d;
-  }
-  &:nth-child(5) {
-    grid-area: e;
-  }
-  &:nth-child(6) {
-    grid-area: f;
+  @media (min-width: 1024px) {
+    &:nth-child(1) {
+      grid-area: a;
+    }
+    &:nth-child(2) {
+      grid-area: b;
+    }
+    &:nth-child(3) {
+      grid-area: c;
+    }
+    &:nth-child(4) {
+      grid-area: d;
+    }
+    &:nth-child(5) {
+      grid-area: e;
+    }
+    &:nth-child(6) {
+      grid-area: f;
+    }
   }
 `;
 

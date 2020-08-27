@@ -7,11 +7,16 @@ import MainTemplate from '../templates/MainTemplate';
 import Photo from '../components/organisms/Photo/Photo';
 
 const StyledGrid = styled.div`
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+
+  @media (min-width: 1024px) {
+    display: flex;
+    flex-wrap: wrap;
+  }
 `;
 
 const StyledInfo = styled.p`
+  padding-top: 35vh;
   color: white;
   text-align: center;
 `;

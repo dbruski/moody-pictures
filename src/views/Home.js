@@ -5,13 +5,16 @@ import Photo from '../components/organisms/Photo/Photo';
 import { AppContext } from '../context';
 
 const StyledGrid = styled.main`
-  height: 90vh;
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
-  grid-template-rows: 1fr 1fr 1fr;
   grid-gap: 5px;
-  overflow: hidden;
-  grid-template-areas: 'a a b b' 'a a d c' 'f e e c';
+
+  @media (min-width: 1024px) {
+    height: 90vh;
+    overflow: hidden;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    grid-template-areas: 'a a b b' 'a a d c' 'f e e c';
+  }
 `;
 
 const StyledLoading = styled.p`

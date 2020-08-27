@@ -2,7 +2,7 @@ export const theme = {
   primary: '#262626',
   secondary: '#454545',
   tertiary: '#686868',
-  cztery: '#b9b9b9',
+  quaternary: '#b9b9b9',
   light: 300,
   bold: 600,
   fontSize: {

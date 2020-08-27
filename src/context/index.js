@@ -22,7 +22,10 @@ export const Provider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
 
   useEffect(() => {
-    localStorage.setItem('moody-pictures-state', JSON.stringify(state));
+    localStorage.setItem(
+      'moody-pictures-state',
+      JSON.stringify({ favorites: state.favorites, fetched: state.fetched }),
+    );
   }, [state]);
 
   const addPhoto = (photo) => {

@@ -75,6 +75,7 @@ const Navbar = () => {
 
   useEffect(() => {
     const firstSearch = async () => {
+      setLoading(true);
       const locationData = await axios.get('https://geolocation-db.com/json/');
       const city = locationData.data.city;
 
@@ -89,7 +90,7 @@ const Navbar = () => {
         hour < 14 ? 'Morning' : hour > 19 ? 'Night' : 'Afternoon';
       getPhotos(`${weather} ${timeOfDay}`);
     };
-    // firstSearch();
+    firstSearch();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -133,7 +134,7 @@ const Navbar = () => {
         </button>
       </StyledSearchContainer>
       <StyledNavButton as={NavLink} to={routes.favorites} activeclass="active">
-        {favorites.length !== 0 && (
+        {favorites && favorites.length !== 0 && (
           <StyledFavoritesLabel>{favorites.length}</StyledFavoritesLabel>
         )}
         <FavoriteIcon style={{ fontSize: '72px' }} />

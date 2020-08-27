@@ -1,4 +1,4 @@
-import React, { createContext, useReducer } from 'react';
+import React, { createContext, useReducer, useEffect } from 'react';
 import reducer from '../reducer';
 import {
   addPhoto as addPhotoAction,
@@ -7,16 +7,23 @@ import {
   setLoading as setLoadingAction,
 } from '../actions';
 
-const initialState = {
-  isLoading: false,
-  favorites: [],
-  fetched: [],
-};
+const initialState =
+  localStorage.getItem('moody-pictures-state') === null
+    ? {
+        isLoading: false,
+        favorites: [],
+        fetched: [],
+      }
+    : JSON.parse(localStorage.getItem('moody-pictures-state'));
 
 export const AppContext = createContext();
 
 export const Provider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
+
+  useEffect(() => {
+    localStorage.setItem('moody-pictures-state', JSON.stringify(state));
+  }, [state]);
 
   const addPhoto = (photo) => {
     dispatch(addPhotoAction(photo));

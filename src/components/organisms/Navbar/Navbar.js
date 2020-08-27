@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import styled from 'styled-components';
 import Input from '../../atoms/Input/Input';
 import { NavLink } from 'react-router-dom';
@@ -7,7 +7,7 @@ import { AppContext } from '../../../context';
 import SearchIcon from '@material-ui/icons/Search';
 import HomeIcon from '@material-ui/icons/Home';
 import FavoriteIcon from '@material-ui/icons/Favorite';
-import { API_KEY } from '../../../API';
+import { UNSPLASH_API_KEY, WEATHER_API_KEY } from '../../../API';
 import axios from 'axios';
 
 const StyledWrapper = styled.nav`
@@ -68,16 +68,37 @@ const Navbar = () => {
   const { favorites } = state;
   const [inputValue, setInputValue] = useState('');
 
+  useEffect(() => {
+    const firstSearch = async () => {
+      const locationData = await axios.get('https://geolocation-db.com/json/');
+      const city = locationData.data.city;
+
+      const weatherData = await axios.get(
+        `https://api.openweathermap.org/data/2.5/weather?q=${city}&APPID=${WEATHER_API_KEY}`,
+      );
+      const weather = weatherData.data.weather[0].main;
+
+      const date = new Date();
+      const hour = date.getHours();
+      const timeOfDay =
+        hour < 14 ? 'Morning' : hour > 19 ? 'Night' : 'Afternoon';
+      getPhotos(`${weather} ${timeOfDay}`);
+    };
+    firstSearch();
+  }, []);
+
   const handleSubmit = (e) => {
     e.preventDefault();
     setLoading(true);
+    getPhotos(inputValue);
+  };
 
+  const getPhotos = (query) => {
     axios
       .get(
-        `https://api.unsplash.com/photos/random/?client_id=${API_KEY}&count=6&query=${inputValue}`,
+        `https://api.unsplash.com/photos/random/?client_id=${UNSPLASH_API_KEY}&count=6&query=${query}`,
       )
       .then((response) => {
-        console.log(response);
         const data = response.data.map((result) => {
           return {
             id: result.id,

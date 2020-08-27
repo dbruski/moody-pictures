@@ -33,9 +33,10 @@ function Home() {
         <StyledLoading>loading..</StyledLoading>
       ) : (
         <StyledGrid>
-          {state.fetched.map((group) => (
-            <Photo key={group.id} details={group} />
-          ))}
+          {state.fetched &&
+            state.fetched.map((group) => (
+              <Photo key={group.id} details={group} />
+            ))}
         </StyledGrid>
       )}
     </MainTemplate>

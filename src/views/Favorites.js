@@ -27,7 +27,7 @@ const Favorites = () => {
 
   return (
     <MainTemplate>
-      {favorites.length ? (
+      {favorites ? (
         <StyledGrid>
           {favorites.map((favorite) => (
             <Photo key={favorite.id} details={favorite} />

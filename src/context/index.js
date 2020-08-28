@@ -26,7 +26,7 @@ export const Provider = ({ children }) => {
   useEffect(() => {
     localStorage.setItem(
       'moody-pictures-state',
-      JSON.stringify({ favorites: state.favorites, fetched: state.fetched }),
+      JSON.stringify({ favorites: state.favorites }),
     );
   }, [state]);
 

@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 import { AppContext } from '../../../context';
 import PropTypes from 'prop-types';
 import FullscreenExitIcon from '@material-ui/icons/FullscreenExit';
@@ -14,6 +14,24 @@ const StyledContainer = styled.div`
   z-index: 9998;
 `;
 
+const appear = keyframes`
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0);
+  }
+
+  70% {
+    opacity: 0.8;
+    transform: translate(-50%, -50%) scale(1.09);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+
+  }
+`;
+
 const StyledWrapper = styled.div`
   position: fixed;
   left: 50%;
@@ -24,6 +42,7 @@ const StyledWrapper = styled.div`
   transform: translate(-50%, -50%);
   color: white;
   z-index: 9999;
+  animation: ${appear} 0.3s ease-in-out;
 `;
 
 const StyledImg = styled.img`

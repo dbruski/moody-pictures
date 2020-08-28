@@ -38,9 +38,12 @@ const StyledNavButton = styled.div`
   align-items: center;
   padding: 10px;
   color: ${({ theme }) => theme.tertiary};
-  transition: 0.3s ease;
+  transition: 0.2s ease;
 
   &.active {
+    color: ${({ theme }) => theme.quaternary};
+  }
+  &:hover {
     color: ${({ theme }) => theme.quaternary};
   }
 `;

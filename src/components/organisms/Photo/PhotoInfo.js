@@ -44,7 +44,11 @@ function PhotoInfo({ details }) {
       {isFavorite ? (
         <>
           <FavoriteIcon
-            style={{ color: 'red', fontSize: '108px', cursor: 'pointer' }}
+            style={{
+              color: 'red',
+              fontSize: '108px',
+              cursor: 'pointer',
+            }}
             onClick={() => removePhoto(details.id)}
           />
           <FullscreenIcon

@@ -75,8 +75,11 @@ const Navbar = () => {
   const { state, fetchData, setLoading } = useContext(AppContext);
   const { favorites } = state;
   const [inputValue, setInputValue] = useState('');
+  const [isHome, setIsHome] = useState(null);
 
   useEffect(() => {
+    setIsHome(window.location.pathname === '/' ? true : false);
+
     const firstSearch = async () => {
       setLoading(true);
       const locationData = await axios.get('https://geolocation-db.com/json/');
@@ -93,9 +96,9 @@ const Navbar = () => {
         hour < 14 ? 'Morning' : hour > 19 ? 'Night' : 'Afternoon';
       getPhotos(`${weather} ${timeOfDay}`);
     };
-    firstSearch();
+    isHome && firstSearch();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [isHome]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -127,15 +130,17 @@ const Navbar = () => {
       <StyledNavButton as={NavLink} exact to={routes.home} activeclass="active">
         <HomeIcon style={{ fontSize: '72px' }} />
       </StyledNavButton>
-      <StyledSearchContainer>
-        <Input
-          onChange={(e) => setInputValue(e.target.value)}
-          value={inputValue}
-        />
-        <button type="submit" onClick={handleSubmit}>
-          <SearchIcon style={{ fontSize: '42px', color: '#b9b9b9' }} />
-        </button>
-      </StyledSearchContainer>
+      {isHome && (
+        <StyledSearchContainer>
+          <Input
+            onChange={(e) => setInputValue(e.target.value)}
+            value={inputValue}
+          />
+          <button type="submit" onClick={handleSubmit}>
+            <SearchIcon style={{ fontSize: '42px', color: '#b9b9b9' }} />
+          </button>
+        </StyledSearchContainer>
+      )}
       <StyledNavButton as={NavLink} to={routes.favorites} activeclass="active">
         {favorites && favorites.length !== 0 && (
           <StyledFavoritesLabel>{favorites.length}</StyledFavoritesLabel>

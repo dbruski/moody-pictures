@@ -27,23 +27,25 @@ const Favorites = () => {
 
   return (
     <MainTemplate>
-      {favorites ? (
-        <StyledGrid>
-          {favorites.map((favorite) => (
-            <Photo key={favorite.id} details={favorite} />
-          ))}
-        </StyledGrid>
-      ) : (
-        <StyledInfo>
-          You don't have any favorite photos. <br />
-          Go and add some{' '}
-          <Link style={{ color: 'red' }} to={routes.home}>
-            here
-          </Link>
-          .
-        </StyledInfo>
-      )}
-      {fullScreen && <FullScreen url={fullScreen} />}
+      <>
+        {favorites ? (
+          <StyledGrid>
+            {favorites.map((favorite) => (
+              <Photo key={favorite.id} details={favorite} />
+            ))}
+          </StyledGrid>
+        ) : (
+          <StyledInfo>
+            You don't have any favorite photos. <br />
+            Go and add some{' '}
+            <Link style={{ color: 'red' }} to={routes.home}>
+              here
+            </Link>
+            .
+          </StyledInfo>
+        )}
+        {fullScreen && <FullScreen url={fullScreen} />}
+      </>
     </MainTemplate>
   );
 };

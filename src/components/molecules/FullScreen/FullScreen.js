@@ -1,10 +1,10 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import styled, { keyframes } from 'styled-components';
 import { AppContext } from '../../../context';
 import PropTypes from 'prop-types';
 import FullscreenExitIcon from '@material-ui/icons/FullscreenExit';
 
-const StyledContainer = styled.div`
+const StyledOverlay = styled.div`
   width: 100vw;
   height: 100vh;
   background: rgba(0, 0, 0, 0.6);
@@ -54,8 +54,22 @@ const StyledImg = styled.img`
 const FullScreen = ({ url }) => {
   const { setFullScreen } = useContext(AppContext);
 
+  useEffect(() => {
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        setFullScreen(null);
+      }
+    });
+
+    return () => {
+      document.removeEventListener('keydown', setFullScreen);
+    };
+    //eslint-disable-next-line
+  }, []);
+
   return (
-    <StyledContainer>
+    <>
+      <StyledOverlay onClick={() => setFullScreen(null)} />
       <StyledWrapper>
         <StyledImg src={url} />
         <FullscreenExitIcon
@@ -69,7 +83,7 @@ const FullScreen = ({ url }) => {
           onClick={() => setFullScreen(null)}
         />
       </StyledWrapper>
-    </StyledContainer>
+    </>
   );
 };
 
